@@ -10,3 +10,4 @@
 import Config
 
 import_config "../apps/rsvp_web/config/config.exs"
+import_config "../apps/rsvp/config/config.exs"
