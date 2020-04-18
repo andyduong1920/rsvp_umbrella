@@ -17,6 +17,10 @@ defmodule Rsvp.Event do
     Rsvp.Event |> Rsvp.Repo.get(id)
   end
 
+  def all do
+    Rsvp.Event |> Rsvp.Repo.all()
+  end
+
   def changeset(event, params \\ %{}) do
     event
     |> Ecto.Changeset.cast(params, @required_fields ++ @optional_fields)

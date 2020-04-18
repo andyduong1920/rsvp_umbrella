@@ -1,0 +1,13 @@
+<h1>All events</h1>
+
+<div>
+    <%= for event <- @events do %>
+        <h4><%= event.title %></h1>
+        <h4><%= event.location %></h2>
+
+        <p><%= event.date%></p>
+        <p><%= event.description%></p>
+
+        <a href="/events/<%= event.id %>">Details</a>
+    <% end %>
+</div>
