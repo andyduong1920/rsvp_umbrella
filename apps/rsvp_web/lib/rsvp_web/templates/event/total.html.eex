@@ -1,1 +1,0 @@
-<h3>Totol: <%= Enum.count(@events) %></h3>
