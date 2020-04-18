@@ -2,10 +2,10 @@ defmodule Rsvp.Event do
   use Ecto.Schema
 
   schema "events" do
-    field :title, :string
-    field :location, :string
-    field :description, :string
-    field :date, :utc_datetime
+    field(:title, :string)
+    field(:location, :string)
+    field(:description, :string)
+    field(:date, :utc_datetime)
 
     timestamps()
   end
@@ -21,7 +21,7 @@ defmodule Rsvp.Event do
   end
 
   defp must_be_future(_, value) do
-    DateTime.compare(value, DateTime.utc_now)
+    DateTime.compare(value, DateTime.utc_now())
     |> get_error
   end
 
@@ -35,7 +35,15 @@ defmodule Rsvp.Event do
   def demo_crud do
     # Create
     event = %Rsvp.Event{}
-    changeset = Rsvp.Event.changeset(event, %{title: "a", location: "b", description: "c", date: DateTime.utc_now})
+
+    changeset =
+      Rsvp.Event.changeset(event, %{
+        title: "a",
+        location: "b",
+        description: "c",
+        date: DateTime.utc_now()
+      })
+
     # invalid_changeset = Rsvp.Event.changeset(event, %{title: "a", location: "b", description: "c", date: DateTime.utc_now |> DateTime.add(-60, :second)})
     {:ok, event} = Rsvp.Repo.insert(changeset)
 
@@ -44,8 +52,9 @@ defmodule Rsvp.Event do
     Rsvp.Repo.update(changeset)
 
     # Query
-    Rsvp.Event |> Rsvp.Repo.all
-    Rsvp.Event |> Rsvp.Repo.get(1) # => Rsvp.Repo.get(Rsvp.Event, 1)
+    Rsvp.Event |> Rsvp.Repo.all()
+    # => Rsvp.Repo.get(Rsvp.Event, 1)
+    Rsvp.Event |> Rsvp.Repo.get(1)
 
     # Delete
     event = Rsvp.Event |> Rsvp.Repo.get(1)
