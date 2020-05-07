@@ -2,6 +2,6 @@
 <%= render RsvpWeb.SharedView, "total.html", list: @events %>
 <div>
     <%= for event <- @events do %>
-        <%= render "event.html", event: event %>
+        <%= render "event.html", event: event, conn: @conn %>
     <% end %>
 </div>
